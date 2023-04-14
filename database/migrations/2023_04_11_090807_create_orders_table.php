@@ -11,8 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('cmd_clients', function (Blueprint $table) {
-            $table->String('Paiement');
+        Schema::create('orders', function (Blueprint $table) {
+            $table->id();
+            $table->string('status');
+            $table->date('date');
+            $table->timestamps();
         });
     }
 
@@ -21,8 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('cmd_clients', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('orders');
     }
 };
