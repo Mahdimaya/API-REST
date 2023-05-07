@@ -27,7 +27,6 @@ class ProduitController extends Controller
             'id_produit' => ['required','int'],
             'nom' => ['required'],
             'prix' => ['required'],
-            'image' => ['required'],
             'description' => ['required'],
 
         ]);
@@ -42,7 +41,6 @@ class ProduitController extends Controller
                 'id_produit' => ['required','int'],
                 'nom' => ['required'],
                 'prix' => ['required'],
-                'image' => ['required'],
                 'description' => ['required']
 
             ]);
@@ -53,7 +51,6 @@ class ProduitController extends Controller
             }
             $product->nom= $request['nom'] ;
             $product->prix= $request['prix'];
-            $product->image= $request['image'];
             $product->save();
             $product1 = ligne_de_cart::find($request->id_product);
             $product1->image= $request['image'];
@@ -67,6 +64,6 @@ class ProduitController extends Controller
     {
         $Deletedproduct = produit::find($request->id_product);
         $Deletedproduct->delete();
-            return response('Le SSproduit est supprimé!', 200);
+            return response('Le produit est supprimé!', 200);
     }
 }

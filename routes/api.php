@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\UserRegisterController;
 use App\Http\Controllers\ProduitController;
 use App\Http\Controllers\ligne_de_cartController;
 
@@ -41,6 +42,3 @@ Route::get('/cartindex/{id}', [ligne_de_cartController::class, 'index']);
 Route::post('/cartstore', [ligne_de_cartController::class, 'store']);
 Route::put('/cartupdate/{id}', [ligne_de_cartController::class, 'update']);
 Route::delete('/cartdestroy', [ligne_de_cartController::class, 'destroy']);
-
-
-

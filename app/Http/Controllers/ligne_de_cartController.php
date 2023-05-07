@@ -13,10 +13,12 @@ class ligne_de_cartController extends Controller
      */
     public function index($id)
     {
-    $produits = Produit::select('produits.*')
-        ->join('ligne_de_carts', 'produits.id', '=', 'ligne_de_carts.id')
-        ->where('ligne_de_carts.id', '=', $id)
-        ->get();
+    $produits = $produits = Produit::with('ligne_de_cart')
+    ->whereHas('ligne_de_cart', function ($query) use ($id) {
+        $query->where('id_produit', '=', $id);
+    })
+    ->get();
+
 
     return response(["Contenu de la ligne de commande est :" => $produits], 200);
 }
