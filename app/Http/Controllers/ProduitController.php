@@ -52,7 +52,7 @@ class ProduitController extends Controller
             $product->nom= $request['nom'] ;
             $product->prix= $request['prix'];
             $product->save();
-            $product1 = ligne_de_cart::find($request->id_product);
+            $product1 = ligne_de_cart::find($request->id_produit);
             $product1->image= $request['image'];
             $product1->save();
 
