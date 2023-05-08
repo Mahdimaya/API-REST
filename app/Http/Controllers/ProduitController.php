@@ -11,10 +11,13 @@ class ProduitController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index($id_produit)
     {
-        $produits = produit::all();
-        return response(["Produits" => $produits], 200);
+        $produit = produit::where('id_produit', $id_produit)->first();
+        if(!$produit || $produit->id_produit != $id_produit)
+          return response(["Error, le produit n'existe pas"], 404);
+        else
+          return response([ $produit], 200);
     }
 
     /**
