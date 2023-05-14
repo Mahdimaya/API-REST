@@ -11,6 +11,11 @@ class Order extends Model
     protected $fillable = [
        "id"  , "status" , "date"
     ];
+    public function produits(){
+        return $this->hasMany(Produit::class,'id');
+    }
+
+
 }
 
 
