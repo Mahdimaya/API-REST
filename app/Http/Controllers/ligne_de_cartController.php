@@ -22,23 +22,25 @@ class ligne_de_cartController extends Controller
 
     return response(["Contenu de la ligne de commande est :" => $produits], 200);
 }
+
     /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
     {
+        $ligne_de_cart = ligne_de_cart::find($request->id_produit);
+        if(!$request || $request->id_produit == $ligne_de_cart->id_produit)
+        return response(["Error"], 404);
         $ligne = new ligne_de_cart;
         $ligne->id = $request->id;
         $ligne->nom = $request->nom;
         $ligne->prix = $request->prix;
-        $ligne->qte = $request->qte;
         $ligne->description = $request->description;
         $ligne->attribute1 = $request->attribute1;
-        $ligne->id_product = $request->id_product;
-
+        $ligne->id_produit = $request->id_produit;
         $ligne->save();
             return response(["La ligne de panier a été créée avec succès" => $ligne], 201);
-        }
+    }
 
 
     public function update(Request $request)
@@ -76,4 +78,11 @@ class ligne_de_cartController extends Controller
         $Deletedproduct->delete();
             return response('ligne de cart(produit) est supprimé!', 200);
     }
+        public function check($id_produit)
+        {
+            $AP = ligne_de_cart::with('produit')->where('id' ,$id_produit)->get();
+            if(!$AP)
+              return response('Error');
+            return response([$AP], 200);
+        }
 }

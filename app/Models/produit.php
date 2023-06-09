@@ -9,7 +9,7 @@ class produit extends Model
 {
     use HasFactory;
     protected $fillable = [
-        "id_produit"  , "prix" , "nom", "photo","description" , "qte stock"
+        "id_produit"  , "nom", "type", "prix", "image", "description" , "id"
      ];
     public function ligne_de_cart(){
         return $this->belongsTo(produit::class , 'id_produit');

@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('qte');
             $table->string('description');
             $table->string('attribute1');
-            $table->foreignId('id_product');
+            $table->foreignId('id_produit');
             $table->timestamps();
         });
     }
